@@ -1,0 +1,1 @@
+# manager-react-native-app
