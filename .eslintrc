@@ -1,0 +1,9 @@
+{
+  "extends": "rallycoding",
+  "rules": {
+    "react/require-extension": "off"
+  },
+  "globals": {
+    "fetch": true
+  }
+}
