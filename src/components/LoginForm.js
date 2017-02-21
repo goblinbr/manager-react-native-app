@@ -2,23 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 //import firebase from 'firebase';
-import { emailChanged } from '../actions';
+import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Button, Input, Spinner } from '.';
 import styles from './styles';
 
 class LoginForm extends Component {
 
-  onButtonPress() {
-  }
-
   renderError() {
-    //if (this.state.error) {
-    if (1 === 2) {
+    if (this.props.error) {
       return (
         <CardSection>
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>
-              {this.state.error}
+              {this.props.error}
             </Text>
           </View>
         </CardSection>
@@ -28,8 +24,7 @@ class LoginForm extends Component {
   }
 
   renderButtonOrSpinner() {
-    //if (this.state.loading) {
-    if (1 === 2) {
+    if (this.props.loading) {
       return (
         <Spinner size="small" />
       );
@@ -37,6 +32,10 @@ class LoginForm extends Component {
     return (
       <Button
         title="Log in"
+        onPress={() => this.props.loginUser({
+          email: this.props.email,
+          password: this.props.password
+        })}
       />
     );
   }
@@ -47,7 +46,7 @@ class LoginForm extends Component {
         <CardSection>
           <Input
             label="E-mail"
-            onChangeText={email => this.props.emailChanged(email)}
+            onChangeText={text => this.props.emailChanged(text)}
             value={this.props.email}
             autoCorrect={false}
             placeholder="your_email@server.com"
@@ -60,6 +59,8 @@ class LoginForm extends Component {
             autoCorrect={false}
             placeholder="password"
             secureTextEntry
+            onChangeText={text => this.props.passwordChanged(text)}
+            value={this.props.password}
           />
         </CardSection>
 
@@ -73,9 +74,11 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  email: state.auth.email
-});
+const mapStateToProps = ({ auth }) => auth;
 
-const connectLoginForm = connect(mapStateToProps, { emailChanged })(LoginForm);
+const connectLoginForm = connect(mapStateToProps, {
+                            emailChanged,
+                            passwordChanged,
+                            loginUser
+                          })(LoginForm);
 export { connectLoginForm as LoginForm };

@@ -43,23 +43,19 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   inputContainer: {
-    height: 40,
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center'
+    height: 60,
+    flex: 1
   },
   inputLabel: {
     fontSize: 18,
-    paddingLeft: 20,
-    flex: 1
+    paddingLeft: 8
   },
   inputTextInput: {
     color: '#000',
-    paddingRight: 5,
-    paddingLeft: 5,
+    paddingRight: 10,
+    paddingLeft: 10,
     fontSize: 18,
-    lineHeight: 23,
-    flex: 2
+    height: 40
   },
   errorContainer: {
     flex: 1
