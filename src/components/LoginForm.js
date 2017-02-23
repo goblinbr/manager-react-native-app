@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View } from 'react-native';
-//import firebase from 'firebase';
+import { Text, Button } from 'react-native';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Button, Input, Spinner } from '.';
+import { Card, CardSection, Input, Spinner } from '.';
 import styles from './styles';
 
 class LoginForm extends Component {
@@ -12,11 +11,9 @@ class LoginForm extends Component {
     if (this.props.error) {
       return (
         <CardSection>
-          <View style={styles.errorContainer}>
-            <Text style={styles.errorText}>
-              {this.props.error}
-            </Text>
-          </View>
+          <Text style={styles.errorText}>
+            {this.props.error}
+          </Text>
         </CardSection>
       );
     }

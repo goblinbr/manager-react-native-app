@@ -19,10 +19,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     padding: 5,
     backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    flexDirection: 'row',
     borderColor: '#ddd',
-    position: 'relative'
   },
   headerView: {
     backgroundColor: '#F0F0F0',
@@ -38,14 +35,6 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20
   },
-  buttonContainer: {
-    flex: 1,
-    alignSelf: 'stretch',
-  },
-  inputContainer: {
-    height: 60,
-    flex: 1
-  },
   inputLabel: {
     fontSize: 18,
     paddingLeft: 8
@@ -57,18 +46,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 40
   },
-  errorContainer: {
-    flex: 1
-  },
   errorText: {
     fontSize: 20,
     alignSelf: 'center',
     color: '#f00'
-  },
-  spinnerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 });
 
