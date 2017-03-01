@@ -6,3 +6,6 @@ export * from './Input';
 export * from './Spinner';
 export * from './EmployeeList';
 export * from './EmployeeCreate';
+export * from './EmployeeEdit';
+export * from './EmployeeListItem';
+export * from './EmployeeForm';

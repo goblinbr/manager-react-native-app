@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: 'center',
     color: '#f00'
+  },
+  employeeListItemText: {
+    fontSize: 18,
+    paddingLeft: 15
   }
 });
 

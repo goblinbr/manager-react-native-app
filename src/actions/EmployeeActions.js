@@ -16,7 +16,7 @@ export const employeeCreate = (employee) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .push(employee)
       .then(() => {
-        dispatch({ type: ActionsTypes.EMPLOYEE_CREATE });
+        dispatch({ type: ActionsTypes.EMPLOYEE_CLEAR });
         Actions.employeeList({ type: 'reset' });
       });
   };
@@ -30,6 +30,20 @@ export const employeesFetch = () => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
       .on('value', snapshot => {
         dispatch({ type: ActionsTypes.EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
+      });
+  };
+};
+
+
+export const employeeSave = (employee) => {
+  const { currentUser } = firebase.auth();
+  const { uid, ...employeeFields } = employee;
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .set(employeeFields)
+      .then(() => {
+        dispatch({ type: ActionsTypes.EMPLOYEE_CLEAR });
+        Actions.employeeList({ type: 'reset' });
       });
   };
 };
