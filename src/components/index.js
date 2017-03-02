@@ -9,3 +9,4 @@ export * from './EmployeeCreate';
 export * from './EmployeeEdit';
 export * from './EmployeeListItem';
 export * from './EmployeeForm';
+export * from './ConfirmModal';

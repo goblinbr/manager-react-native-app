@@ -9,6 +9,12 @@ export const employeeUpdate = ({ prop, value }) => (
   }
 );
 
+export const employeeClear = () => (
+  {
+    type: ActionsTypes.EMPLOYEE_CLEAR
+  }
+);
+
 export const employeeCreate = (employee) => {
   const { currentUser } = firebase.auth();
 
@@ -41,6 +47,19 @@ export const employeeSave = (employee) => {
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
       .set(employeeFields)
+      .then(() => {
+        dispatch({ type: ActionsTypes.EMPLOYEE_CLEAR });
+        Actions.employeeList({ type: 'reset' });
+      });
+  };
+};
+
+
+export const employeeDelete = (uid) => {
+  const { currentUser } = firebase.auth();
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+      .remove()
       .then(() => {
         dispatch({ type: ActionsTypes.EMPLOYEE_CLEAR });
         Actions.employeeList({ type: 'reset' });

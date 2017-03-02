@@ -54,6 +54,27 @@ const styles = StyleSheet.create({
   employeeListItemText: {
     fontSize: 18,
     paddingLeft: 15
+  },
+  confirmModalButtonView: {
+    justifyContent: 'center',
+    flexDirection: 'row'
+  },
+  confirmModalText: {
+    fontSize: 18,
+    paddingTop: 20,
+    paddingBottom: 20,
+    textAlign: 'center'
+  },
+  confirmModalView: {
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    position: 'relative',
+    flex: 1,
+    justifyContent: 'center'
+  },
+  confirmModalButton: {
+    width: 100,
+    marginRight: 20,
+    marginLeft: 20
   }
 });
 
