@@ -1,6 +1,6 @@
 import firebase from 'firebase';
-import { Actions } from 'react-native-router-flux';
 import * as ActionsTypes from './types';
+import navigateTo from './navigateTo';
 
 export const employeeUpdate = ({ prop, value }) => (
   {
@@ -15,6 +15,22 @@ export const employeeClear = () => (
   }
 );
 
+export const employeeEdit = (employee) =>
+  (dispatch) => {
+    Object.keys(employee).forEach((prop) => {
+      const value = employee[prop];
+      dispatch(employeeUpdate({ prop, value }));
+    });
+
+    navigateTo(dispatch, 'EmployeeEdit', false);
+  };
+
+export const employeeAdd = () =>
+(dispatch) => {
+  dispatch(employeeClear());
+  navigateTo(dispatch, 'EmployeeCreate', false);
+};
+
 export const employeeCreate = (employee) => {
   const { currentUser } = firebase.auth();
 
@@ -23,7 +39,7 @@ export const employeeCreate = (employee) => {
       .push(employee)
       .then(() => {
         dispatch({ type: ActionsTypes.EMPLOYEE_CLEAR });
-        Actions.employeeList({ type: 'reset' });
+        navigateTo(dispatch, 'EmployeeList', true);
       });
   };
 };
@@ -49,7 +65,7 @@ export const employeeSave = (employee) => {
       .set(employeeFields)
       .then(() => {
         dispatch({ type: ActionsTypes.EMPLOYEE_CLEAR });
-        Actions.employeeList({ type: 'reset' });
+        navigateTo(dispatch, 'EmployeeList', true);
       });
   };
 };
@@ -62,7 +78,7 @@ export const employeeDelete = (uid) => {
       .remove()
       .then(() => {
         dispatch({ type: ActionsTypes.EMPLOYEE_CLEAR });
-        Actions.employeeList({ type: 'reset' });
+        navigateTo(dispatch, 'EmployeeList', true);
       });
   };
 };

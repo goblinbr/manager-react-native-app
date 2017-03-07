@@ -3,8 +3,16 @@ import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { employeesFetch } from '../actions';
 import { EmployeeListItem } from '.';
+import AddEmployeeButton from './AddEmployeeButton';
 
 class EmployeeList extends Component {
+  static navigationOptions = {
+    title: 'Employees',
+    header: {
+      right: <AddEmployeeButton />
+    }
+  };
+
   componentWillMount() {
     this.props.employeesFetch();
     this.createDataSource(this.props);

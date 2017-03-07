@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { employeeEdit } from '../actions';
 import { CardSection } from '.';
 import styles from './styles';
 
 class EmployeeListItem extends Component {
   onPress() {
-    Actions.employeeEdit({ employee: this.props.employee });
+    this.props.employeeEdit(this.props.employee);
   }
 
   render() {
@@ -24,4 +25,5 @@ class EmployeeListItem extends Component {
   }
 }
 
-export { EmployeeListItem };
+const connectEmployeeListItem = connect(null, { employeeEdit })(EmployeeListItem);
+export { connectEmployeeListItem as EmployeeListItem };

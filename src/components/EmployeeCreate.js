@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Button } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeCreate, employeeClear } from '../actions';
+import { employeeCreate } from '../actions';
 import { Card, CardSection, EmployeeForm } from '.';
 
 class EmployeeCreate extends Component {
-  componentWillMount() {
-    this.props.employeeClear();
-  }
+  static navigationOptions = {
+    title: 'Add employee',
+  };
 
   onButtonPress() {
     const { name, phone, shift } = this.props;
@@ -31,5 +31,5 @@ class EmployeeCreate extends Component {
 
 const mapStateToProps = ({ employeeForm }) => employeeForm;
 const EmployeeCreateCon = connect(mapStateToProps,
-                      { employeeCreate, employeeClear })(EmployeeCreate);
+                      { employeeCreate })(EmployeeCreate);
 export { EmployeeCreateCon as EmployeeCreate };

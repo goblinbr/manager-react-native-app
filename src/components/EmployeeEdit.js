@@ -6,15 +6,10 @@ import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 import { Card, CardSection, EmployeeForm, ConfirmModal } from '.';
 
 class EmployeeEdit extends Component {
+  static navigationOptions = {
+    title: 'Edit employee',
+  };
   state = { showConfirm: false };
-
-  componentWillMount() {
-    const employee = this.props.employee;
-    Object.keys(employee).forEach((prop) => {
-      const value = employee[prop];
-      this.props.employeeUpdate({ prop, value });
-    });
-  }
 
   onSaveButtonPress() {
     const { uid, name, phone, shift } = this.props;

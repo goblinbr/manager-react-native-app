@@ -6,6 +6,9 @@ import { Card, CardSection, Input, Spinner } from '.';
 import styles from './styles';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    title: 'Login',
+  };
 
   renderError() {
     if (this.props.error) {
