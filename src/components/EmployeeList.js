@@ -4,12 +4,14 @@ import { ListView } from 'react-native';
 import { employeesFetch } from '../actions';
 import { EmployeeListItem } from '.';
 import AddEmployeeButton from './AddEmployeeButton';
+import LogoutButton from './LogoutButton';
 
 class EmployeeList extends Component {
   static navigationOptions = {
     title: 'Employees',
     header: {
-      right: <AddEmployeeButton />
+      right: <AddEmployeeButton />,
+      left: <LogoutButton />
     }
   };
 

@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, Button } from 'react-native';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { emailChanged, passwordChanged, loginUser, listenToAuthStateChanged } from '../actions';
 import { Card, CardSection, Input, Spinner } from '.';
 import styles from './styles';
+
+let firstMount = true;
 
 class LoginForm extends Component {
   static navigationOptions = {
     title: 'Login',
   };
+
+  componentWillMount() {
+    if (firstMount) {
+      this.props.listenToAuthStateChanged();
+      firstMount = false;
+    }
+  }
 
   renderError() {
     if (this.props.error) {
@@ -41,6 +50,15 @@ class LoginForm extends Component {
   }
 
   render() {
+    if (this.props.user === 'unknown') {
+      return (
+        <Card>
+          <CardSection>
+            <Spinner />
+          </CardSection>
+        </Card>
+      );
+    }
     return (
       <Card>
         <CardSection>
@@ -79,6 +97,7 @@ const mapStateToProps = ({ auth }) => auth;
 const connectLoginForm = connect(mapStateToProps, {
                             emailChanged,
                             passwordChanged,
-                            loginUser
+                            loginUser,
+                            listenToAuthStateChanged
                           })(LoginForm);
 export { connectLoginForm as LoginForm };

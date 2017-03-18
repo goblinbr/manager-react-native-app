@@ -21,6 +21,25 @@ const loginUserSuccess = (dispatch, user) => {
   navigateTo(dispatch, 'EmployeeList', true);
 };
 
+const logoutUserSuccess = (dispatch) => {
+  dispatch({
+    type: ActionsTypes.LOGOUT_USER_SUCCESS
+  });
+
+  navigateTo(dispatch, 'LoginForm', true);
+};
+
+export const listenToAuthStateChanged = () =>
+  (dispatch) => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        loginUserSuccess(dispatch, user);
+      } else {
+        logoutUserSuccess(dispatch);
+      }
+    });
+  };
+
 const loginUserFail = (dispatch) =>
   dispatch({
     type: ActionsTypes.LOGIN_USER_FAIL,
@@ -28,7 +47,7 @@ const loginUserFail = (dispatch) =>
 
 const createAccount = (dispatch, email, password) =>
   firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
+      //.then(user => loginUserSuccess(dispatch, user))
       .catch(() => loginUserFail(dispatch));
 
 export const loginUser = ({ email, password }) =>
@@ -38,6 +57,11 @@ export const loginUser = ({ email, password }) =>
     });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
+      //.then(user => loginUserSuccess(dispatch, user))
       .catch(() => createAccount(dispatch, email, password));
+  };
+
+export const logout = () =>
+  () => {
+    firebase.auth().signOut();
   };
