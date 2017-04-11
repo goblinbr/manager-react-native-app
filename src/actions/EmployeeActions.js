@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import * as ActionsTypes from './types';
 import navigateTo from './navigateTo';
+import goBack from './goBack';
 
 export const employeeUpdate = ({ prop, value }) => (
   {
@@ -29,6 +30,11 @@ export const employeeAdd = () =>
 (dispatch) => {
   dispatch(employeeClear());
   navigateTo(dispatch, 'EmployeeCreate', false);
+};
+
+export const employeeGoBack = () =>
+(dispatch) => {
+  goBack(dispatch);
 };
 
 export const employeeCreate = (employee) => {

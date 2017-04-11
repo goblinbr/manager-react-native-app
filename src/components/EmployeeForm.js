@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Picker, Text, View } from 'react-native';
+import { Picker, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeeGoBack } from '../actions';
 import { CardSection, Input } from '.';
 import styles from './styles';
 
@@ -40,6 +40,13 @@ class EmployeeForm extends Component {
             <Picker.Item label="Sunday" value="Sunday" />
           </Picker>
         </CardSection>
+
+        <CardSection>
+          <Button
+            title="Back"
+            onPress={() => this.props.employeeGoBack()}
+          />
+        </CardSection>
       </View>
     );
   }
@@ -47,5 +54,5 @@ class EmployeeForm extends Component {
 
 const mapStateToProps = ({ employeeForm }) => employeeForm;
 const EmployeeCreateCon = connect(mapStateToProps,
-                      { employeeUpdate })(EmployeeForm);
+                      { employeeUpdate, employeeGoBack })(EmployeeForm);
 export { EmployeeCreateCon as EmployeeForm };
