@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ListView, ScrollView } from 'react-native';
 import { employeesFetch } from '../actions';
-import { EmployeeListItem } from '.';
+import { EmployeeListItem, CardSection } from '.';
 import AddEmployeeButton from './AddEmployeeButton';
 import LogoutButton from './LogoutButton';
 
 class EmployeeList extends Component {
   static navigationOptions = {
     title: 'Employees',
-    header: {
-      right: <AddEmployeeButton />,
-      left: <LogoutButton />
-    }
+    headerRight: <LogoutButton />,
+    headerLeft: null
   };
 
   componentWillMount() {
@@ -38,11 +36,16 @@ class EmployeeList extends Component {
 
   render() {
     return (
-      <ListView
-        enableEmptySections
-        dataSource={this.dataSource}
-        renderRow={this.renderRow}
-      />
+      <ScrollView>
+        <CardSection>
+          <AddEmployeeButton />
+        </CardSection>
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+        />
+      </ScrollView>
     );
   }
 }

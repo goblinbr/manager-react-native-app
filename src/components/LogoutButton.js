@@ -6,7 +6,7 @@ import { logout } from '../actions';
 class LogoutButtonComp extends Component {
   render() {
     return (
-      <View style={{ marginLeft: 15 }}>
+      <View style={{ marginRight: 15 }}>
         <Button
           title="Logout"
           onPress={() => this.props.logout()}

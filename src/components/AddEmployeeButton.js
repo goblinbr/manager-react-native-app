@@ -6,9 +6,9 @@ import { employeeAdd } from '../actions';
 class AddEmployeeButtonComp extends Component {
   render() {
     return (
-      <View style={{ marginRight: 15 }}>
+      <View style={{ margin: 15 }}>
         <Button
-          title="Add"
+          title="New employee"
           onPress={() => this.props.employeeAdd()}
         />
       </View>

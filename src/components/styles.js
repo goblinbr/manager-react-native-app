@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
   },
   employeeListItemText: {
     fontSize: 18,
-    paddingLeft: 15
+    padding: 15,
+    paddingTop: 10,
+    paddingBottom: 10
   },
   confirmModalButtonView: {
     justifyContent: 'center',
